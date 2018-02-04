@@ -10,3 +10,5 @@ export const LoginPage = () => (
     </div>
   </div>
 );
+
+export default connect(undefined)(LoginPage);

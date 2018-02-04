@@ -12,7 +12,7 @@ const AppRouter = () => (
   <Router history={history}>
     <div>
       <Switch>
-        <Route path="/" component={LoginPage} />
+        <Route path="/" component={LoginPage} exact={true}/>
         <Route path="/dashboard" component={ExpenseDashboardPage} />
         <Route component={NotFoundPage} />
       </Switch>
