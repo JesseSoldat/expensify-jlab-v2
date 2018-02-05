@@ -3,7 +3,6 @@ import ExpenseList from './ExpenseList';
 
 const ExpenseDashboardPage = () => (
   <div>
-    Dashboard
     <ExpenseList/>
   </div>
 );
