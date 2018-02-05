@@ -76,3 +76,19 @@ export const startSetExpenses = () => {
       });
   };
 };
+
+//REMOVE-----------------------------
+export const removeExpense = ({id} ={}) => ({
+  type: 'REMOVE_EXPENSE',
+  id
+});
+
+export const startRemoveExpense = ({id} = {}) => {
+  return (dispatch) => {
+    return database.ref(`${rootDatabase}/expenses/${id}`)
+      .remove()
+      .then(() => {
+        dispatch(removeExpense({id}));
+      });
+  };
+};

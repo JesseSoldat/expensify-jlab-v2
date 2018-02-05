@@ -11,7 +11,6 @@ import { firebase } from './firebase/firebase';
 import { startSetExpenses } from './actions/expenses';
 import Loader from './components/LoadingPage';
 
-console.log('app works!');
 const store = configureStore();
 
 const jsx = (
