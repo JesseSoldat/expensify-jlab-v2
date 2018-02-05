@@ -19,8 +19,17 @@ const jsx = (
   </Provider>
 );
 
-ReactDOM.render(jsx, document.getElementById('app'));
+let hasRendered = false;
+
+const renderApp = () => {
+  if(!hasRendered) {
+    ReactDOM.render(jsx, document.getElementById('app'));
+    hasRendered = true;
+  }
+};
+
+ReactDOM.render(<div>Loading...</div>, document.getElementById('app'));
 
 store.dispatch(startSetExpenses()).then(() => {
-
+  renderApp();
 });
