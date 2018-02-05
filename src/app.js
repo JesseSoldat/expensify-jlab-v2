@@ -9,6 +9,7 @@ import configureStore from './store/configureStore';
 import AppRouter, {history} from './routers/AppRouter';
 import { firebase } from './firebase/firebase';
 import { startSetExpenses } from './actions/expenses';
+import Loader from './components/LoadingPage';
 
 console.log('app works!');
 const store = configureStore();
@@ -28,7 +29,7 @@ const renderApp = () => {
   }
 };
 
-ReactDOM.render(<div>Loading...</div>, document.getElementById('app'));
+ReactDOM.render(<div><Loader /></div>, document.getElementById('app'));
 
 store.dispatch(startSetExpenses()).then(() => {
   renderApp();
