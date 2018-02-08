@@ -9,7 +9,8 @@ import configureStore from './store/configureStore';
 import AppRouter, {history} from './routers/AppRouter';
 import { firebase } from './firebase/firebase';
 import { startSetExpenses } from './actions/expenses';
-import Loader from './components/LoadingPage';
+import LoadingPage from './components/LoadingPage';
+import { login, logout } from './actions/auth';
 
 const store = configureStore();
 
@@ -28,8 +29,21 @@ const renderApp = () => {
   }
 };
 
-ReactDOM.render(<div><Loader /></div>, document.getElementById('app'));
+ReactDOM.render(<div><LoadingPage /></div>, document.getElementById('app'));
 
-store.dispatch(startSetExpenses()).then(() => {
-  renderApp();
+
+firebase.auth().onAuthStateChanged(user => {
+  if(user) {
+    store.dispatch(login(user.uid));
+    store.dispatch(startSetExpenses()).then(() => {
+      renderApp();
+      if(history.location.pathname === '/') {
+        history.push('/dashboard')
+      }
+    });   
+  } else {
+    store.dispatch(logout());
+    renderApp();
+    history.push('/');    
+  }
 });
